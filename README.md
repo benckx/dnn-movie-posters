@@ -10,13 +10,13 @@ It is a multi-label classification exercise. The results look like this:
 |_Zootopia_                  |Comedy: 71%    |Animation: 68% |Adventure: 34% |
 |_Notting Hill_              |Comedy: 88%    |Romance: 85%   |Drama: 62%     |
 
-##### Data sets
+### Data sets
 The data is split as followed:
 * __Training__: 5/7
 * __Validation__: 1/7
 * __Test__: 1/7
 
-##### Model parameters
+### Model parameters
 * __min_year__ and __max_year__
 * __genres__
 * __ratio__
@@ -25,17 +25,17 @@ The data is split as followed:
 
 ## How to
 
-##### Get posters data
+### Get posters data
 ```
 python3 get_data.py -download -resize
 ```
 
-##### Train the model
+### Train the model
 ```
 python3 __main__.py
 ```
 
-##### Evaluate the model
+### Evaluate the model
 ```
 python3 tests.py
 ```
