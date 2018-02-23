@@ -10,6 +10,7 @@ It is a multi-label classification problem (movies can belong to multiple genres
 |_The Matrix_                |Action: 64%    |Adventure: 30% |Drama: 12%     |
 |_Zootopia_                  |Comedy: 71%    |Animation: 68% |Adventure: 34% |
 |_Notting Hill_              |Comedy: 88%    |Romance: 85%   |Drama: 62%     |
+
 Each instance (movie) has an independent probability to belong to each class (genre). 
 
 ### Data set
@@ -30,7 +31,7 @@ Posters design is very dependent on release year, therefore using a larger time 
 * __genres__: Classes. In the current configuration, genres are grouped by 3 (Comedy, Drama, Action) 
 or 7 (idem + Animation, Romance, Adventure, Horror).
 * __ratio__: Original pictures size is 182x268 (ratio 100). You can use a smaller pictures for quicker 
-(but probably less accurate) model training (30, 40, 50, etc). You can resize the posters with `get_data.py -resize`. 
+(but probably less accurate) model training (30, 40, 50, etc).
 * __epochs__: Number of epochs.
 * __version__: Version of the model. Different versions can have different parameters (e.g. kernel size, etc), 
 so different configurations can be compared easily.
