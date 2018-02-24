@@ -8,6 +8,7 @@ independent probability to belong to each class (genre).
 With 14,265 train samples and 2,826 validation samples (movies from 1977 to 2017), 106x161 images and after 50 epochs,
 the results look like this ([o] indicates the genre is found in the original dataset, [!] indicates it is not):
 
+\
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMTAxMDE4Mzc3ODNeQTJeQWpwZ15BbWU4MDY2Mjg4MDcx._V1_UY268_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BM2YxYmFjYWMtMzBmMC00MTVmLThhMjUtYWU5Yzg2OGQwZjE3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
@@ -19,7 +20,7 @@ The Others (2001)                ['Drama[!]: 76%', 'Horror[o]: 65%', 'Action[!]:
 Alien: Resurrection (1997)       ['Horror[o]: 67%', 'Action[o]: 64%', 'Drama[!]: 43%']
 The Martian (2015)               ['Drama[o]: 95%', 'Adventure[o]: 81%', 'Comedy[!]: 23%']
 ```
-
+\
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMDIzODcyY2EtMmY2MC00ZWVlLTgwMzAtMjQwOWUyNmJjNTYyXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNjk2ODQzNDYxNV5BMl5BanBnXkFtZTgwMTcyNDg4NjE@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMTU2NTA4NzgyNl5BMl5BanBnXkFtZTcwNzEzMjQ1Mg@@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
@@ -30,7 +31,7 @@ Pretty Woman (1990)              ['Romance[o]: 99%', 'Comedy[o]: 99%', 'Drama[!]
 Whatever Works (2009)            ['Drama[!]: 86%', 'Comedy[o]: 78%', 'Romance[o]: 76%']
 Bienvenue chez les C.. (2008)    ['Comedy[o]: 98%', 'Romance[o]: 98%', 'Drama[!]: 7%']
 ```
-
+\
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNDI4MGEwZDAtZDg0Yy00MjFhLTg1MjctODdmZTMyNTUyNDI3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMTk3NTM1NTg1Ml5BMl5BanBnXkFtZTgwOTgzMTMyMDE@._V1_UY268_CR6,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNTg0NmI1ZGQtZTUxNC00NTgxLThjMDUtZmRlYmEzM2MwOWYwXkEyXkFqcGdeQXVyMzM4MjM0Nzg@._V1_UY268_CR2,0,182,268_AL_.jpg)&nbsp;&nbsp;
