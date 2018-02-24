@@ -106,73 +106,43 @@ def download_posters(min_year=0):
             print('-> skip (too old)')
 
 
-def load_genre_data(min_year, max_year, genres, ratio, test_data=False, verbose=True):
-    xs_train = []
-    ys_train = []
-    xs_validation = []
-    ys_validation = []
+def load_genre_data(min_year, max_year, genres, ratio, data_type, verbose=True):
+    xs = []
+    ys = []
 
     for year in reversed(range(min_year, max_year + 1)):
         if verbose:
-            print('loading movies data for ' + str(year) + '...')
+            print('loading movies', data_type, 'data for', year, '...')
 
-        if not test_data:
-            (x_train, y_train), (x_validation, y_validation) = _load_genre_data_per_year(year, genres, ratio)
-            _add_to(x_train, xs_train)
-            _add_to(y_train, ys_train)
+        xs_year, ys_year = _load_genre_data_per_year(year, genres, ratio, data_type)
+        _add_to(xs_year, xs)
+        _add_to(ys_year, ys)
 
-            if verbose:
-                print('train / validation -> ', len(y_train), '/', len(y_validation))
-        else:
-            x_validation, y_validation = _load_genre_data_per_year(year, genres, ratio, test_data=True)
-            if verbose:
-                print('test ->', len(y_validation))
+        if verbose:
+            print('->', len(xs_year))
 
-        _add_to(x_validation, xs_validation)
-        _add_to(y_validation, ys_validation)
-
-    if not test_data:
-        return (np.concatenate(xs_train), np.concatenate(ys_train)), \
-               (np.concatenate(xs_validation), np.concatenate(ys_validation))
-    else:
-        return np.concatenate(xs_validation), np.concatenate(ys_validation)
+    return np.concatenate(xs), np.concatenate(ys)
 
 
-def _load_genre_data_per_year(year, genres, poster_ratio, test_data=False):
-    x_train = []
-    y_train = []
-    x_validation = []
-    y_validation = []
+def _load_genre_data_per_year(year, genres, poster_ratio, data_type):
+    xs = []
+    ys = []
 
-    count = 0
-    for movie in list_movies():
-        if movie.year == year and movie.has_any_genre(genres) and movie.poster_file_exists():
-            if (test_data and movie.is_test_data()) or (not test_data and not movie.is_test_data()):
+    count = 1
+    for movie in list_movies(year, genres):
+        if movie.poster_file_exists():
+            if (data_type == 'train' and not movie.is_test_data() and count % validation_data_ratio != 0) \
+                    or (data_type == 'validation' and not movie.is_test_data() and count % validation_data_ratio == 0) \
+                    or (data_type == 'test' and movie.is_test_data()):
                 x = movie.to_rgb_pixels(poster_ratio)
                 y = movie.get_genres_vector(genres)
+                xs.append(x)
+                ys.append(y)
+            count += 1
 
-                if test_data:
-                    x_validation.append(x)
-                    y_validation.append(y)
-                else:
-                    if count % validation_data_ratio == 0:
-                        x_validation.append(x)
-                        y_validation.append(y)
-                    else:
-                        x_train.append(x)
-                        y_train.append(y)
-
-                    count += 1
-
-    x_validation = np.array(x_validation, dtype='float32')
-    y_validation = np.array(y_validation, dtype='uint8')
-
-    if not test_data:
-        x_train = np.array(x_train, dtype='float32')
-        y_train = np.array(y_train, dtype='uint8')
-        return (x_train, y_train), (x_validation, y_validation)
-    else:
-        return x_validation, y_validation
+    xs = np.array(xs, dtype='float32')
+    ys = np.array(ys, dtype='uint8')
+    return xs, ys
 
 
 def _add_to(array1d, array2d):
@@ -180,9 +150,9 @@ def _add_to(array1d, array2d):
         array2d.append(array1d)
 
 
-def list_movies():
+def list_movies(year=None, genres=None):
     if len(parsed_movies) == 0:
-        data = pd.read_csv('data/MovieGenre.csv', encoding="ISO-8859-1")
+        data = pd.read_csv('data/MovieGenre.csv', encoding='ISO-8859-1')
         for index, row in data.iterrows():
             movie = _parse_movie_row(row)
             if movie.is_valid():
@@ -190,7 +160,15 @@ def list_movies():
 
         parsed_movies.sort(key=lambda m: m.imdb_id)
 
-    return parsed_movies
+    result = parsed_movies
+
+    if year is not None:
+        result = [movie for movie in result if movie.year == year]
+
+    if genres is not None:
+        result = [movie for movie in result if movie.has_any_genre(genres)]
+
+    return result
 
 
 def _parse_movie_row(row) -> Movie:

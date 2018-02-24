@@ -11,6 +11,7 @@ saved_models_folder = 'saved_models/'
 align = 33
 my_format = "{:.0%}"
 eval_models = True
+crop_results = 3
 
 
 class TransferModel:
@@ -25,7 +26,7 @@ class TransferModel:
 
     def eval(self):
         print('loading test data...')
-        x_test, y_test = movies.load_genre_data(self.min_year, self.max_year, self.genres, self.ratio, test_data=True,
+        x_test, y_test = movies.load_genre_data(self.min_year, self.max_year, self.genres, self.ratio, data_type='test',
                                                 verbose=False)
         print('Evaluating model...')
         scores = self.model.evaluate(x_test, y_test, verbose=0)
@@ -86,8 +87,12 @@ def format_predictions(movie, genres, predictions):
             is_present = '[!]'
         predictions_str.append(genre + is_present + ': ' + my_format.format(probability))
 
-    space = repeat_to_length(' ', align - len(str(movie)))
-    return str(movie) + space + str(predictions_str)
+    spaces = repeat_to_length(' ', align - len(str(movie)))
+
+    if crop_results is not None:
+        return str(movie) + spaces + str(predictions_str[:crop_results])
+    else:
+        return str(movie) + spaces + str(predictions_str)
 
 
 def main():

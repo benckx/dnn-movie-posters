@@ -6,7 +6,7 @@ import movies_dataset as movies
 download = '-download' in sys.argv
 resize = '-resize' in sys.argv
 
-ratios = [30, 40, 50, 60]
+ratios = [30, 40, 50, 60, 70]
 images_path = 'data/images/'
 base_images_path = images_path + '100/'
 

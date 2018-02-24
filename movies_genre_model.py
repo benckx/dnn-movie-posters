@@ -9,25 +9,24 @@ from keras.models import Sequential
 import movies_dataset as movies
 
 
-def get_kernel_dimensions(version, shape):
+def get_kernel_dimensions(version, shape, divisor):
     image_width = shape[1]
 
     # original
     if version == 1:
-        return 3, 5
+        return 3, 3
 
     # square 10% width
     if version == 2:
-        return int(0.1 * image_width), int(0.1 * image_width)
+        return int(0.1 * image_width / divisor), int(0.1 * image_width / divisor)
 
     # square 20% width
     if version == 3:
-        return int(0.2 * image_width), int(0.2 * image_width)
+        return int(0.2 * image_width / divisor), int(0.2 * image_width / divisor)
 
 
 def build(version, min_year, max_year, genres, ratio, epochs,
           x_train=None, y_train=None, x_validation=None, y_validation=None):
-
     # log
     print()
     print('version:', version)
@@ -40,7 +39,8 @@ def build(version, min_year, max_year, genres, ratio, epochs,
     # load data if not provided
     if x_train is None or y_train is None or x_validation is None or y_validation is None:
         begin = time.time()
-        (x_train, y_train), (x_validation, y_validation) = movies.load_genre_data(min_year, max_year, genres, ratio)
+        x_train, y_train = movies.load_genre_data(min_year, max_year, genres, ratio, 'train')
+        x_validation, y_validation = movies.load_genre_data(min_year, max_year, genres, ratio, 'validation')
         print('loaded in', (time.time() - begin) / 60, 'min.')
     else:
         print('data provided in arguments')
@@ -52,17 +52,19 @@ def build(version, min_year, max_year, genres, ratio, epochs,
 
     # build model
     num_classes = len(y_train[0])
-    kernel_dimensions = get_kernel_dimensions(version, x_train.shape)
-    print('kernel_dimensions:', kernel_dimensions)
+    kernel_dimensions1 = get_kernel_dimensions(version, x_train.shape, 1)
+    kernel_dimensions2 = get_kernel_dimensions(version, x_train.shape, 2)
+    print('kernel_dimensions1:', kernel_dimensions1)
+    print('kernel_dimensions2:', kernel_dimensions2)
 
     model = Sequential([
-        Conv2D(32, kernel_dimensions, padding='same', input_shape=x_train.shape[1:], activation='relu'),
-        Conv2D(32, kernel_dimensions, activation='relu'),
+        Conv2D(32, kernel_dimensions1, padding='same', input_shape=x_train.shape[1:], activation='relu'),
+        Conv2D(32, kernel_dimensions1, activation='relu'),
         MaxPooling2D(pool_size=(2, 2)),
         Dropout(0.25),
 
-        Conv2D(64, kernel_dimensions, padding='same', activation='relu'),
-        Conv2D(64, kernel_dimensions, activation='relu'),
+        Conv2D(64, kernel_dimensions2, padding='same', activation='relu'),
+        Conv2D(64, kernel_dimensions2, activation='relu'),
         MaxPooling2D(pool_size=(2, 2)),
         Dropout(0.25),
 
