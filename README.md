@@ -6,7 +6,7 @@ It is a multi-label classification problem (movies can belong to multiple genres
 independent probability to belong to each class (genre).
 
 With 14,265 train samples and 2,826 validation samples (movies from 1977 to 2017), 106x161 images and after 50 epochs,
-the results look like this ([o] indicates the genre is found in the original dataset, [!] indicates it is not):
+the results look like this ([!] indicates the predicted genre is not found in the original data set):
 
 \
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
@@ -15,10 +15,10 @@ the results look like this ([o] indicates the genre is found in the original dat
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_UX182_CR0,0,182,268_AL_.jpg
 )
 ```
-The Matrix (1999)                ['Action[o]: 91%', 'Drama[!]: 25%', 'Adventure[!]: 13%']
-The Others (2001)                ['Drama[!]: 76%', 'Horror[o]: 65%', 'Action[!]: 41%']
-Alien: Resurrection (1997)       ['Horror[o]: 67%', 'Action[o]: 64%', 'Drama[!]: 43%']
-The Martian (2015)               ['Drama[o]: 95%', 'Adventure[o]: 81%', 'Comedy[!]: 23%']
+The Matrix (1999)                ['Action: 91%', 'Drama[!]: 25%', 'Adventure[!]: 13%']
+The Others (2001)                ['Drama[!]: 76%', 'Horror: 65%', 'Action[!]: 41%']
+Alien: Resurrection (1997)       ['Horror: 67%', 'Action: 64%', 'Drama[!]: 43%']
+The Martian (2015)               ['Drama: 95%', 'Adventure: 81%', 'Comedy[!]: 23%']
 ```
 \
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMDIzODcyY2EtMmY2MC00ZWVlLTgwMzAtMjQwOWUyNmJjNTYyXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
@@ -26,10 +26,10 @@ The Martian (2015)               ['Drama[o]: 95%', 'Adventure[o]: 81%', 'Comedy[
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMTU2NTA4NzgyNl5BMl5BanBnXkFtZTcwNzEzMjQ1Mg@@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMjEwNzMzMzUxOV5BMl5BanBnXkFtZTcwODcyODA4MQ@@._V1_UY268_CR9,0,182,268_AL_.jpg)
 ```
-The Truman Show (1998)           ['Comedy[o]: 98%', 'Drama[o]: 76%', 'Romance[!]: 7%']
-Pretty Woman (1990)              ['Romance[o]: 99%', 'Comedy[o]: 99%', 'Drama[!]: 22%']
-Whatever Works (2009)            ['Drama[!]: 86%', 'Comedy[o]: 78%', 'Romance[o]: 76%']
-Bienvenue chez les C.. (2008)    ['Comedy[o]: 98%', 'Romance[o]: 98%', 'Drama[!]: 7%']
+The Truman Show (1998)           ['Comedy: 98%', 'Drama: 76%', 'Romance[!]: 7%']
+Pretty Woman (1990)              ['Romance: 99%', 'Comedy: 99%', 'Drama[!]: 22%']
+Whatever Works (2009)            ['Drama[!]: 86%', 'Comedy: 78%', 'Romance: 76%']
+Bienvenue chez les C.. (2008)    ['Comedy: 98%', 'Romance: 98%', 'Drama[!]: 7%']
 ```
 \
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNDI4MGEwZDAtZDg0Yy00MjFhLTg1MjctODdmZTMyNTUyNDI3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
@@ -37,10 +37,10 @@ Bienvenue chez les C.. (2008)    ['Comedy[o]: 98%', 'Romance[o]: 98%', 'Drama[!]
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNTg0NmI1ZGQtZTUxNC00NTgxLThjMDUtZmRlYmEzM2MwOWYwXkEyXkFqcGdeQXVyMzM4MjM0Nzg@._V1_UY268_CR2,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BOTMyMjEyNzIzMV5BMl5BanBnXkFtZTgwNzIyNjU0NzE@._V1_UX182_CR0,0,182,268_AL_.jpg)
 ```
-Paprika (2006)                   ['Animation[o]: 66%', 'Comedy[!]: 58%', 'Adventure[o]: 31%']
-Spirited Away (2001)             ['Animation[o]: 83%', 'Drama[!]: 57%', 'Adventure[o]: 42%']
-Castle in the Sky (1986)         ['Animation[o]: 88%', 'Adventure[o]: 78%', 'Comedy[!]: 30%']
-Zootopia (2016)                  ['Animation[o]: 62%', 'Adventure[o]: 59%', 'Comedy[o]: 49%']
+Paprika (2006)                   ['Animation: 66%', 'Comedy[!]: 58%', 'Adventure: 31%']
+Spirited Away (2001)             ['Animation: 83%', 'Drama[!]: 57%', 'Adventure: 42%']
+Castle in the Sky (1986)         ['Animation: 88%', 'Adventure: 78%', 'Comedy[!]: 30%']
+Zootopia (2016)                  ['Animation: 62%', 'Adventure: 59%', 'Comedy: 49%']
 ```
 
 Overall accuracy is 45%. 
