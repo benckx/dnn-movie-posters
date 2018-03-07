@@ -1,7 +1,7 @@
 ## About
 A simple demo / tutorial / experiment / portfolio project for me to better understand the concepts of Machine Learning.
 
-##Classify Movies by Genre 
+## Classify Movies by Genre 
 Use Convolutional Neural Network (CNN) to classify movies posters by genre. It is a multi-label classification problem 
 (movies can belong to multiple genres). Each instance (movie poster) has an independent probability to belong to each label (genre).
 
@@ -134,7 +134,7 @@ source ~/tensorflow_DCGAN_env/bin/activate
 ```
 4\. Prepare data set with the parameters you want:
 ```
-prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60
+python3 prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60
 ```
 This will create a folder 'movies_posters' with all the posters.
 
