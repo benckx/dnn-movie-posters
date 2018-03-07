@@ -1,5 +1,8 @@
 ## About
-Use Convolutional Neural Network (CNN) to classify movies posters by genres. It is a multi-label classification problem 
+A simple demo / tutorial / experiment / portfolio project for me to better understand the concepts of Machine Learning.
+
+##Classify Movies by Genre 
+Use Convolutional Neural Network (CNN) to classify movies posters by genre. It is a multi-label classification problem 
 (movies can belong to multiple genres). Each instance (movie poster) has an independent probability to belong to each label (genre).
 
 The implementation is based on Keras and TensorFlow.
@@ -44,7 +47,7 @@ Zootopia (2016)                  ['Animation: 62%', 'Adventure: 59%', 'Comedy: 4
 \
 Overall accuracy is 45% (I'm actually not sure it's the most suited metrics for this). 
 
-### Data set
+## Data set
 The data set was found on [Kaggle](https://www.kaggle.com/neha1703/movie-genre-from-its-poster/version/3) and contains 
 about 27,000 posters.
 
@@ -56,13 +59,15 @@ It is split as followed:
 Module `movies_dataset.py` provides functions to access the data set easily (parse MovieGenres.csv, list movies, 
 get movie genres, get poster, etc).
 
-### Model parameters
+### Data set Parameters
 * __min_year__ and __max_year__: Movie release time range (e.g. from 1977 to 2017). 
 Posters design is very dependent on release year, therefore using a larger time range might increase noise. 
 * __genres__: Classes. In the current configuration, genres are grouped by 3 (Comedy, Drama, Action) 
 or 7 (idem + Animation, Romance, Adventure, Horror).
 * __ratio__: Original pictures size is 182x268 (ratio 100). You can use a smaller pictures for quicker 
 (but probably less accurate) model training (30, 40, 50, etc).
+
+### Model Parameters
 * __epochs__: Number of epochs.
 * __version__: Version of the model. Different versions can have different parameters (e.g. kernel size, etc), 
 so different configurations can be compared easily.
@@ -101,13 +106,47 @@ python3 tests.py
 I use AWS EC2 with this [AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C). No packages install is required 
 (use `source activate tensorflow_p36` to activate the correct Virtualenv environment).
 
+## Generate Posters with DCGAN
+
+Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.com/Newmu/dcgan_code) to generate movie posters:
+
+<p align="center">
+  <a href="https://youtu.be/oz9dezDHUXs">
+    <img width="70%" src="https://i.imgur.com/a07ebkC.jpg">
+  </a>
+</p>
+
+[Watch training video](https://youtu.be/oz9dezDHUXs)
+
+### How to
+
+1\. Download [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow):
+```
+git clone https://github.com/benckx/DCGAN-tensorflow.git
+```
+2\. Install the required virtualenv via the script (DCGAN-tensorflow works with an older version of TenserFlow):
+```
+./install_dcgan_env.sh
+```
+3\. Activate the environment: 
+```
+source ~/tensorflow_DCGAN_env/bin/activate
+```
+4\. Prepare data set with the parameters you want:
+```
+prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60
+```
+This will create a folder 'movies_posters' with all the posters.
+
+5\. Copy folder 'dcgan_movies_posters' to /DCGAN-tensorflow/data/
+
+6\. In DCGAN-tensorflow, run the command:
+```
+python3 main.py --dataset dcgan_movies_posters --grid_height=6 --grid_width=10 --train
+```
+
 ## Going Further
 A few things I'm currently working on or thinking about:
 
 * Predict movie release year / rating from poster
 * Improve model versioning to compare different settings
-* Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.com/carpedm20/DCGAN-tensorflow) to generate movie posters:
-
-<p align="center">
-  <img src="https://i.imgur.com/qCSp6VN.jpg">
-</p>

@@ -24,21 +24,24 @@ class Movie:
     poster_url = ''
 
     def poster_file_exists(self) -> bool:
-        return os.path.isfile(self.poster_file_name())
+        return os.path.isfile(self.poster_file_path())
 
     def download_poster(self):
         try:
             response = urllib.request.urlopen(self.poster_url)
             data = response.read()
-            file = open(self.poster_file_name(), 'wb')
+            file = open(self.poster_file_path(), 'wb')
             file.write(bytearray(data))
             file.close()
             return data
         except:
             print('-> error')
 
-    def poster_file_name(self, size=100) -> str:
-        return images_folder + str(size) + "/" + str(self.imdb_id) + '.jpg'
+    def poster_file_path(self, size=100) -> str:
+        return images_folder + str(size) + "/" + self.poster_file_name()
+
+    def poster_file_name(self):
+        return str(self.imdb_id) + '.jpg'
 
     def is_valid(self) -> bool:
         return self.poster_url.startswith('https://') \
@@ -203,4 +206,6 @@ def list_genres(number):
     if number == 3:
         return ['Comedy', 'Drama', 'Action']
     if number == 7:
-        return ['Comedy', 'Drama', 'Action', 'Animation', 'Romance', 'Adventure', 'Horror']
+        return list_genres(3) + ['Animation', 'Romance', 'Adventure', 'Horror']
+    if number == 14:
+        return list_genres(7) + ['Sci-Fi', 'Crime', 'Mystery', 'Thriller', 'War', 'Family', 'Western']
