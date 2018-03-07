@@ -11,6 +11,8 @@ saved_models_folder = 'saved_models/'
 align = 33
 my_format = "{:.0%}"
 eval_models = True
+print_summary = True
+print_test_movies = True
 crop_results = 3
 
 
@@ -82,7 +84,7 @@ def format_predictions(movie, genres, predictions):
     predictions_str = []
     for genre, probability in sorted_predictions:
         if genre in movie.genres:
-            is_present = '[o]'
+            is_present = ''
         else:
             is_present = '[!]'
         predictions_str.append(genre + is_present + ': ' + my_format.format(probability))
@@ -103,6 +105,8 @@ def main():
         print('------------------------------------------------------------------------')
         print(saved_model)
         print('------------------------------------------------------------------------')
+        if print_summary:
+            print(saved_model.model.summary())
         if eval_models:
             saved_model.eval()
 
@@ -128,17 +132,18 @@ def main():
                             "Star Wars: Episode IV - A New Hope", "The Godfather", "A.I. Artificial Intelligence",
                             "Enter the Void", "The Abyss", "Primer", "Coherence", "Pulp Fiction"]
 
-        print()
-        for expected_genre, movies_titles in sorted(test_movies.items()):
-            print(' -- ' + expected_genre + ' -- ')
-            for movie_title in movies_titles:
-                movie = movies.search_movie(title=movie_title)
-                if movie is not None:
-                    predictions = saved_model.predict(movie)
-                    print(format_predictions(movie, saved_model.genres, predictions))
-                else:
-                    print(movie_title + ' not found')
+        if print_test_movies:
             print()
+            for expected_genre, movies_titles in sorted(test_movies.items()):
+                print(' -- ' + expected_genre + ' -- ')
+                for movie_title in movies_titles:
+                    movie = movies.search_movie(title=movie_title)
+                    if movie is not None:
+                        predictions = saved_model.predict(movie)
+                        print(format_predictions(movie, saved_model.genres, predictions))
+                    else:
+                        print(movie_title + ' not found')
+                print()
 
 
 if __name__ == '__main__':

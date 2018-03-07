@@ -1,14 +1,13 @@
 ## About
-Use Convolutional Neural Network (CNN) to classify movies posters by genres. The implementation is based on 
-Keras and TensorFlow.
+Use Convolutional Neural Network (CNN) to classify movies posters by genres. It is a multi-label classification problem 
+(movies can belong to multiple genres). Each instance (movie poster) has an independent probability to belong to each label (genre).
 
-It is a multi-label classification problem (movies can belong to multiple genres). Each instance (movie poster) has an 
-independent probability to belong to each class (genre).
+The implementation is based on Keras and TensorFlow.
 
 With 14,265 train samples and 2,826 validation samples (movies from 1977 to 2017), 106x161 images and after 50 epochs,
 the results look like this ([!] indicates the predicted genre is not found in the original data set):
 
-\
+
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMTAxMDE4Mzc3ODNeQTJeQWpwZ15BbWU4MDY2Mjg4MDcx._V1_UY268_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BM2YxYmFjYWMtMzBmMC00MTVmLThhMjUtYWU5Yzg2OGQwZjE3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
@@ -42,8 +41,8 @@ Spirited Away (2001)             ['Animation: 83%', 'Drama[!]: 57%', 'Adventure:
 Castle in the Sky (1986)         ['Animation: 88%', 'Adventure: 78%', 'Comedy[!]: 30%']
 Zootopia (2016)                  ['Animation: 62%', 'Adventure: 59%', 'Comedy: 49%']
 ```
-
-Overall accuracy is 45%. 
+\
+Overall accuracy is 45% (I'm actually not sure it's the most suited metrics for this). 
 
 ### Data set
 The data set was found on [Kaggle](https://www.kaggle.com/neha1703/movie-genre-from-its-poster/version/3) and contains 
@@ -101,3 +100,14 @@ python3 tests.py
 ### Train in the cloud
 I use AWS EC2 with this [AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C). No packages install is required 
 (use `source activate tensorflow_p36` to activate the correct Virtualenv environment).
+
+## Going Further
+A few things I'm currently working on or thinking about:
+
+* Predict movie release year / rating from poster
+* Improve model versioning to compare different settings
+* Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.com/carpedm20/DCGAN-tensorflow) to generate movie posters:
+
+<p align="center">
+  <img src="https://i.imgur.com/qCSp6VN.jpg">
+</p>
