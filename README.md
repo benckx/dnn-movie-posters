@@ -111,7 +111,7 @@ I use AWS EC2 with this [AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C).
 Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.com/Newmu/dcgan_code) to generate movie posters:
 
 <p align="center">
-  <a href="https://youtu.be/oz9dezDHUXs">
+  <a href="https://i.imgur.com/a07ebkC.jpg">
     <img width="70%" src="https://i.imgur.com/a07ebkC.jpg">
   </a>
 </p>
