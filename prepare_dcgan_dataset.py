@@ -68,7 +68,7 @@ for the_file in os.listdir(path):
 # copy files
 for movie in all_movies:
     if movie.poster_file_exists():
-        copyfile(movie.poster_file_path(), path + '/' + movie.poster_file_name())
+        copyfile(movie.poster_file_path(ratio), path + '/' + movie.poster_file_name())
 
 # TODO: not very clean
 # convert all to RGB
