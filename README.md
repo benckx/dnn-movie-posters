@@ -84,8 +84,9 @@ so different configurations can be compared easily.
 * h5py 2.7.1
 
 ### Get posters data
-Use flag `-download` to download the posters from Amazon (based on the URLs provided in MovieGenre.csv).
-Use flag `-resize` to create smaller posters (30%, 40%, etc). 
+* Use flag `-download` to download the posters from Amazon (based on the URLs provided in MovieGenre.csv)
+* Use flag `-resize` to create smaller posters (30%, 40%, etc).
+* Use parameter `-min_year=1980` to filter out the oldest movies.
 ```
 python3 get_data.py -download -resize
 ```
@@ -103,8 +104,8 @@ This script iterates through all the saved models in 'saved_models' and evaluate
 python3 tests.py
 ```
 ### Train in the cloud
-I use AWS EC2 with this [AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C). No packages install is required 
-(use `source activate tensorflow_p36` to activate the correct Virtualenv environment).
+I use AWS EC2 with this [AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C) (ami-e07e779a). No packages install is required 
+(use `source activate tensorflow_p36` to activate the correct Anaconda environment).
 
 ## Generate Posters with DCGAN
 
@@ -132,17 +133,17 @@ git clone https://github.com/benckx/DCGAN-tensorflow.git
 ```
 source ~/tensorflow_DCGAN_env/bin/activate
 ```
-4\. Prepare data set with the parameters you want:
+4\. Prepare data set with the parameters you want ([download posters](#get-posters-data) first if you didn't):
 ```
-python3 prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60 -sample_rate=2
+python3 prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60
 ```
 This will create a folder 'movies_posters' with all the posters selected from the parameters values.
 
-5\. Copy folder 'dcgan_movies_posters' to /DCGAN-tensorflow/data/
+5\. Move folder 'dcgan_movies_posters' to /DCGAN-tensorflow/data/dcgan_movies_posters
 
 6\. In DCGAN-tensorflow, run the command:
 ```
-python3 main.py --dataset dcgan_movies_posters --grid_height=6 --grid_width=10 --train
+python3 main.py --dataset dcgan_movies_posters --grid_height=6 --grid_width=10  -sample_rate=2 --train
 ```
 
 ## Going Further
