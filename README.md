@@ -116,7 +116,7 @@ Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.
 [Watch training video](https://youtu.be/oz9dezDHUXs)
 
 ### How to
-1\. Download [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow).
+1\. Download the forked [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow).
 ```
 git clone https://github.com/benckx/DCGAN-tensorflow.git
 ```
@@ -135,8 +135,8 @@ python3 main.py --dataset dcgan_movies_posters --grid_height=6 --grid_width=10  
 
 ## Run in the cloud
 AWS EC2:
-* [AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C) (ami-e07e779a). No packages install required.
-* instance type: g2.2xlarge
+* AMI: [ami-e07e779a](https://aws.amazon.com/marketplace/pp/B077GCH38C). No packages install required.
+* Instance type: g2.2xlarge
 * Run `source activate tensorflow_p36` to activate the correct Anaconda environment.
 
 ## Going Further
