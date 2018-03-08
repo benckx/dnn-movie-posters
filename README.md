@@ -103,12 +103,8 @@ This script iterates through all the saved models in 'saved_models' and evaluate
 ```
 python3 tests.py
 ```
-### Train in the cloud
-I use AWS EC2 with this [AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C) (ami-e07e779a). No packages install is required 
-(use `source activate tensorflow_p36` to activate the correct Anaconda environment).
 
 ## Generate Posters with DCGAN
-
 Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.com/Newmu/dcgan_code) to generate movie posters:
 
 <p align="center">
@@ -120,35 +116,31 @@ Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.
 [Watch training video](https://youtu.be/oz9dezDHUXs)
 
 ### How to
-
-1\. Download [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow):
+1\. Download [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow).
 ```
 git clone https://github.com/benckx/DCGAN-tensorflow.git
 ```
-2\. Install the required virtualenv via the script (DCGAN-tensorflow works with an older version of TenserFlow):
-```
-./install_dcgan_env.sh
-```
-3\. Activate the environment: 
-```
-source ~/tensorflow_DCGAN_env/bin/activate
-```
-4\. Prepare data set with the parameters you want ([download posters](#get-posters-data) first if you didn't):
+2\. Prepare data set with the parameters you want (git clone this project and [download posters](#get-posters-data) first if you didn't):
 ```
 python3 prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60
 ```
 This will create a folder 'movies_posters' with all the posters selected from the parameters values.
 
-5\. Move folder 'dcgan_movies_posters' to /DCGAN-tensorflow/data/dcgan_movies_posters
+3\. Move folder 'dcgan_movies_posters' to /DCGAN-tensorflow/data/dcgan_movies_posters
 
-6\. In DCGAN-tensorflow, run the command:
+4\. In DCGAN-tensorflow, run the command:
 ```
 python3 main.py --dataset dcgan_movies_posters --grid_height=6 --grid_width=10  -sample_rate=2 --train
 ```
+
+## Run in the cloud
+AWS EC2:
+* [AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C) (ami-e07e779a). No packages install required.
+* instance type: g2.2xlarge
+* Run `source activate tensorflow_p36` to activate the correct Anaconda environment.
 
 ## Going Further
 A few things I'm currently working on or thinking about:
 
 * Predict movie release year / rating from poster
 * Improve model versioning to compare different settings
-* Make [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow) run on a more recent version of TensorFlow
