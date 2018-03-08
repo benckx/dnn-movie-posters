@@ -104,7 +104,7 @@ This script iterates through all the saved models in 'saved_models' and evaluate
 python3 tests.py
 ```
 
-## Generate Posters with DCGAN
+## Generate Movies Posters with DCGAN
 Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.com/Newmu/dcgan_code) to generate movie posters:
 
 <p align="center">
@@ -133,7 +133,7 @@ This will create a folder 'movies_posters' with all the posters selected from th
 python3 main.py --dataset dcgan_movies_posters --grid_height=6 --grid_width=10  -sample_rate=2 --train
 ```
 
-## Run in the cloud
+## Run in the Cloud
 AWS EC2:
 * AMI: [ami-e07e779a](https://aws.amazon.com/marketplace/pp/B077GCH38C). No packages install required.
 * Instance type: g2.2xlarge
