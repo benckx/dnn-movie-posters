@@ -134,9 +134,9 @@ source ~/tensorflow_DCGAN_env/bin/activate
 ```
 4\. Prepare data set with the parameters you want:
 ```
-python3 prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60
+python3 prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60 -sample_rate=2
 ```
-This will create a folder 'movies_posters' with all the posters.
+This will create a folder 'movies_posters' with all the posters selected from the parameters values.
 
 5\. Copy folder 'dcgan_movies_posters' to /DCGAN-tensorflow/data/
 
@@ -150,3 +150,4 @@ A few things I'm currently working on or thinking about:
 
 * Predict movie release year / rating from poster
 * Improve model versioning to compare different settings
+* Make [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow) run on a more recent version of TensorFlow
