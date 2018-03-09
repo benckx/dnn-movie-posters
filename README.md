@@ -85,8 +85,8 @@ so different configurations can be compared easily.
 
 ### Get posters data
 * Use flag `-download` to download the posters from Amazon (based on the URLs provided in MovieGenre.csv)
-* Use flag `-resize` to create smaller posters (30%, 40%, etc).
-* Use parameter `-min_year=1980` to filter out the oldest movies.
+* Use flag `-resize` to create smaller posters (30%, 40%, etc)
+* Use parameter `-min_year=1980` to filter out the oldest movies
 ```
 python3 get_data.py -download -resize
 ```
@@ -108,8 +108,8 @@ python3 tests.py
 Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.com/Newmu/dcgan_code) to generate movie posters:
 
 <p align="center">
-  <a href="https://i.imgur.com/a07ebkC.jpg">
-    <img width="70%" src="https://i.imgur.com/a07ebkC.jpg">
+  <a href="https://i.imgur.com/g6Dn7Uv.jpg">
+    <img width="70%" src="https://i.imgur.com/g6Dn7Uv.jpg">
   </a>
 </p>
 
@@ -124,11 +124,11 @@ git clone https://github.com/benckx/DCGAN-tensorflow.git
 ```
 python3 prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60
 ```
-This will create a folder 'movies_posters' with all the posters selected from the parameters values.
+This will create a folder 'dcgan_movies_posters' with all the posters selected from the parameters values.
 
-3\. Move folder 'dcgan_movies_posters' to /DCGAN-tensorflow/data/dcgan_movies_posters
+3\. Move folder 'dcgan_movies_posters' to DCGAN-tensorflow/data/dcgan_movies_posters
 
-4\. In DCGAN-tensorflow, run the command:
+4\. In DCGAN-tensorflow, run the command with the parameters you need:
 ```
 python3 main.py --dataset dcgan_movies_posters --grid_height=6 --grid_width=10  -sample_rate=2 --train
 ```
