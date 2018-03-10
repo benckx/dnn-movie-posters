@@ -8,7 +8,7 @@ Use Convolutional Neural Network (CNN) to classify movies posters by genre. It i
 The implementation is based on Keras and TensorFlow.
 
 With 14,265 train samples and 2,826 validation samples (movies from 1977 to 2017), 106x161 images and after 50 epochs,
-the results look like this ([!] indicates the predicted genre is not found in the original data set):
+the results look like this ([!] indicates the predicted genre is not found in the original dataset):
 
 
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
@@ -47,8 +47,8 @@ Zootopia (2016)                  ['Animation: 62%', 'Adventure: 59%', 'Comedy: 4
 \
 Overall accuracy is 45% (I'm actually not sure it's the most suited metrics for this). 
 
-## Data set
-The data set was found on [Kaggle](https://www.kaggle.com/neha1703/movie-genre-from-its-poster/version/3) and contains 
+## Dataset
+The dataset was found on [Kaggle](https://www.kaggle.com/neha1703/movie-genre-from-its-poster/version/3) and contains 
 about 27,000 posters.
 
 It is split as followed:
@@ -56,14 +56,14 @@ It is split as followed:
 * __Validation__: 1/7
 * __Test__: 1/7
 
-Module `movies_dataset.py` provides functions to access the data set easily (parse MovieGenres.csv, list movies, 
+Module `movies_dataset.py` provides functions to access the dataset easily (parse MovieGenres.csv, list movies, 
 get movie genres, get poster, etc).
 
-### Data set Parameters
+### Dataset Parameters
 * __min_year__ and __max_year__: Movie release time range (e.g. from 1977 to 2017). 
 Posters design is very dependent on release year, therefore using a larger time range might increase noise. 
-* __genres__: Classes. In the current configuration, genres are grouped by 3 (Comedy, Drama, Action) 
-or 7 (idem + Animation, Romance, Adventure, Horror).
+* __genres__: Classes. In the current configuration, genres are grouped by 3 (Comedy, Drama, Action),
+ 7 (idem + Animation, Romance, Adventure, Horror) or 14 (idem + Sci-Fi, Crime, Mystery, Thriller, War, Family, Western)
 * __ratio__: Original pictures size is 182x268 (ratio 100). You can use a smaller pictures for quicker 
 (but probably less accurate) model training (30, 40, 50, etc).
 
@@ -120,7 +120,7 @@ Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.
 ```
 git clone https://github.com/benckx/DCGAN-tensorflow.git
 ```
-2\. Prepare data set with the parameters you want (git clone this project and [download posters](#get-posters-data) first if you didn't):
+2\. Prepare dataset with the parameters you want (git clone this project and [download posters](#get-posters-data) first if you didn't):
 ```
 python3 prepare_dcgan_dataset.py -min_year=1980 -exclude_genres=Animation,Comedy,Family -ratio=60
 ```
@@ -128,7 +128,7 @@ This will create a folder 'dcgan_movies_posters' with all the posters selected f
 
 3\. Move folder 'dcgan_movies_posters' to DCGAN-tensorflow/data/dcgan_movies_posters
 
-4\. In DCGAN-tensorflow, run the command with the parameters you need:
+4\. In DCGAN-tensorflow, run the command with the parameters you need (the parameters I added or removed are [documented here](https://github.com/benckx/DCGAN-tensorflow#about-this-fork)):
 ```
 python3 main.py --dataset dcgan_movies_posters --grid_height=6 --grid_width=10  -sample_rate=2 --train
 ```
@@ -142,5 +142,12 @@ AWS EC2:
 ## Going Further
 A few things I'm currently working on or thinking about:
 
-* Predict movie release year / rating from poster
-* Improve model versioning to compare different settings
+### CNN
+* Predict movie release year / rating from the poster
+* Improve model versioning to compare different settings (kernel size, loss function, etc.)
+
+### GAN
+* Run the dataset on this [other GAN model](https://github.com/tkarras/progressive_growing_of_gans)
+* Migrate [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow) to Keras
+* Find a way to query a GAN model with parameters, for example: _generate a Sci-Fi movie poster made in the 80s_
+* Explore how GAN can be applied to sound and video
