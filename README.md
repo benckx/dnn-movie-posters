@@ -113,7 +113,7 @@ Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.
   </a>
 </p>
 
-[Watch training video](https://youtu.be/VcO93VwPwcg)
+[Watch training video](https://youtu.be/Mb9ZNO_hXVY)
 
 ### How to
 1\. Download the forked [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow).
