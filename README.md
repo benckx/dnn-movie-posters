@@ -113,7 +113,7 @@ Use [Deep Convolutional Generative Adversarial Networks (DCGAN)](https://github.
   </a>
 </p>
 
-[Watch training video](https://youtu.be/oz9dezDHUXs)
+[Watch training video](https://youtu.be/VcO93VwPwcg)
 
 ### How to
 1\. Download the forked [DCGAN-tensorflow](https://github.com/benckx/DCGAN-tensorflow).
@@ -145,6 +145,7 @@ A few things I'm currently working on or thinking about:
 ### CNN
 * Predict movie release year / rating from the poster
 * Improve model versioning to compare different settings (kernel size, loss function, etc.)
+* Print neurons state for each genre
 
 ### GAN
 * Run the dataset on this [other GAN model](https://github.com/tkarras/progressive_growing_of_gans)
