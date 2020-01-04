@@ -1,3 +1,7 @@
+<a href="https://paypal.me/benckx/2">
+<img src="https://img.shields.io/badge/Donate-PayPal-green.svg"/>
+</a>
+
 ## About
 A simple demo / tutorial / experiment / portfolio project for me to better understand the concepts of Machine Learning.
 
@@ -14,8 +18,7 @@ the results look like this ([!] indicates the predicted genre is not found in th
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BMTAxMDE4Mzc3ODNeQTJeQWpwZ15BbWU4MDY2Mjg4MDcx._V1_UY268_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
 ![](https://images-na.ssl-images-amazon.com/images/M/MV5BM2YxYmFjYWMtMzBmMC00MTVmLThhMjUtYWU5Yzg2OGQwZjE3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX182_CR0,0,182,268_AL_.jpg)&nbsp;&nbsp;
-![](https://images-na.ssl-images-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_UX182_CR0,0,182,268_AL_.jpg
-)
+![](https://images-na.ssl-images-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_UX182_CR0,0,182,268_AL_.jpg)
 ```
 The Matrix (1999)                ['Action: 91%', 'Drama[!]: 25%', 'Adventure[!]: 13%']
 The Others (2001)                ['Drama[!]: 76%', 'Horror: 65%', 'Action[!]: 41%']
